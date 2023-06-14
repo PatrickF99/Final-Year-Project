@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1 class="mb-5" align="center">Account Settings</h1>
+  <form method="POST" action="{{ url_for('views.settings') }}">
+    <div class="form-group">
+      <label for="age">Age:</label>
+      <input type="number" class="form-control" id="age" name="age" value="{{ settings.age }}" required>
+    </div>
+    <div class="form-group">
+      <label for="gender">Gender:</label>
+      <select class="form-control" id="gender" name="gender">
+        <option value="Male" {% if settings.gender == 'Male' %}selected{% endif %}>Male</option>
+        <option value="Female" {% if settings.gender == 'Female' %}selected{% endif %}>Female</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="height">Height (cm):</label>
+      <input type="number" class="form-control" id="height" name="height" value="{{ settings.height }}" required>
+    </div>
+    <div class="form-group">
+      <label for="weight">Weight (kg):</label>
+      <input type="number" class="form-control" id="weight" name="weight" value="{{ settings.weight }}" required>
+    </div>
+    <div class="form-group">
+      <label for="activity-level">Activity Level:</label>
+      <select class="form-control" id="activity-level" name="activity-level">
+        <option value="Sedentary" {% if settings.activity_level == 'Sedentary' %}selected{% endif %}>Sedentary</option>
+        <option value="Lightly Active" {% if settings.activity_level == 'Lightly Active' %}selected{% endif %}>Lightly Active</option>
+        <option value="Moderately Active" {% if settings.activity_level == 'Moderately Active' %}selected{% endif %}>Moderately Active</option>
+        <option value="Very Active" {% if settings.activity_level == 'Very Active' %}selected{% endif %}>Very Active</option>
+        <option value="Extra Active" {% if settings.activity_level == 'Extra Active' %}selected{% endif %}>Extra Active</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="weight-loss-goal">Weight Loss Goal:</label>
+      <select class="form-control" id="weight-loss-goal" name="weight-loss-goal">
+        <option value="1" {% if settings.weight_loss_goal == '1' and settings.weight_loss_goal != '1.5' %}selected{% endif %}>Lose 1 lb per week</option>
+        <option value="1.5" {% if settings.weight_loss_goal == '1.5' %}selected{% endif %}>Lose 1.5 lbs per week</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>
+
+  {% if settings.calorie_limit %}
+    <div class="mt-5">
+      <p>Your daily calorie limit is: {{ settings.calorie_limit|int }}</p>
+    </div>
+  {% endif %}
+
+{% endblock %}

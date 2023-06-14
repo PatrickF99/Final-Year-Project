@@ -1,0 +1,106 @@
+{% extends "base.html" %} {% block title %}Food{% endblock %} {% block content
+%}
+
+<h1 align="center">Food</h1>
+
+<div class="card text-bg-dark mb-3">
+  <h5 class="card-header">Today's Summary</h5>
+  <div class="card-body">
+    <h5 class="card-title">Your Remaining Calories for Today</h5>
+    <p class="card-text">{{ calorie_limit|int }}</p>
+  </div>
+</div>
+
+<br />
+
+<form id="food-form" action="/food" method="POST">
+  <div class="form-group">
+    Search
+    <label for="food">Food By Text Input</label>
+    <input
+      type="text"
+      class="form-control"
+      id="food-input"
+      name="food"
+      placeholder="Enter food"
+    />
+    <br />
+    <button type="submit" class="btn btn-secondary">Search By Text</button>
+  </div>
+</form>
+
+<br />
+
+<form action="/food" method="post" enctype="multipart/form-data">
+  Search Food By Image Input:
+  <input type="file" name="img" id="img" /> <br />
+  <button type="submit" class="btn btn-secondary">Search By Image</button>
+</form>
+
+<br />
+
+{% if breakfast_notes or lunch_notes or dinner_notes %}
+
+<h2>Today's Request History:</h2>
+
+<div class="row">
+  <div class="col">
+    <div class="card text-bg-dark mb-3">
+      <h5 class="card-header">Breakfast (06:00 - 11:59)</h5>
+      <div class="card-body">
+        {% for note in breakfast_notes %}
+        <div class="d-flex justify-content-between">
+          <p class="card-text">{{ note.data }}</p>
+          <button
+            type="button"
+            class="close"
+            onClick="deleteNote({{ note.id }})"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card text-bg-dark mb-3">
+      <h5 class="card-header">Lunch (12:00 - 17:59)</h5>
+      <div class="card-body">
+        {% for note in lunch_notes %}
+        <div class="d-flex justify-content-between">
+          <p class="card-text">{{ note.data }}</p>
+          <button
+            type="button"
+            class="close"
+            onClick="deleteNote({{ note.id }})"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card text-bg-dark mb-3">
+      <h5 class="card-header">Dinner (18:00 - 23:59)</h5>
+      <div class="card-body">
+        {% for note in dinner_notes %}
+        <div class="d-flex justify-content-between">
+          <p class="card-text">{{ note.data }}</p>
+          <button
+            type="button"
+            class="close"
+            onClick="deleteNote({{ note.id }})"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endif %} {% endblock %}

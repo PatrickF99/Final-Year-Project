@@ -1,0 +1,111 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+<!--
+<h1 align="center">Notes</h1>
+<ul class="list-group list-group-flush" id="notes">
+  {% for note in user.notes %}
+  <li class="list-group-item">
+    {{ note.data }}
+    <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </li>
+  {% endfor %}
+</ul>
+<form method="POST">
+  <textarea name="note" id="note" class="form-control"></textarea>
+  <br />
+  <div align="center">
+    <button type="submit" class="btn btn-primary">Add Note</button>
+  </div>
+</form>
+-->
+<h1 align="center">Home</h1>
+<div class="card text-bg-dark mb-3">
+  <h5 class="card-header">Today's Summary</h5>
+  <div class="card-body">
+    <h5 class="card-title">Your Remaining Calories for Today</h5>
+    <p class="card-text">{{ calorie_limit|int }}</p>
+  </div>
+  <div class="card-footer">
+    <a href="/food" class="btn btn-secondary">Add Food</a>
+  </div>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="col mb-4">
+    <div class="card h-100">
+      <img
+        src="{{url_for('static', filename='burger.jpg')}}"
+        class="card-img-top"
+        alt="food2"
+      />
+      <div class="card-body">
+        <h5 class="card-title">Enjoy Your Favourite Foods</h5>
+        <p class="card-text">
+          You can still enjoy your favourite foods when on your weight loss
+          journey. A highly restrictive diet that doesn't allow for enjoyable
+          foods is not effective!
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card h-100">
+      <img
+        src="{{url_for('static', filename='eggs.jpg')}}"
+        class="card-img-top"
+        alt="food2"
+      />
+      <div class="card-body">
+        <h5 class="card-title">Discover a Healthier Approach</h5>
+        <p class="card-text">
+          There are many delicious, healthy food options that you have yet to
+          discover! You can lose weight without even feeling like you are on a
+          controlled and balanced diet.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card h-100">
+      <img
+        src="{{url_for('static', filename='weights.jpg')}}"
+        class="card-img-top"
+        alt="weight"
+      />
+      <div class="card-body">
+        <h5 class="card-title">Exercise</h5>
+        <p class="card-text">
+          Exercise is a great way to supplement your weight loss journey. Your
+          diet will be the main contributor to weight loss, but exercise can be
+          greatly beneficial in improving confidence and discipline and can help
+          outline the benefits of the weight you are losing!
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card h-100">
+      <img
+        src="{{url_for('static', filename='scale.jpg')}}"
+        class="card-img-top"
+        alt="scale"
+      />
+      <div class="card-body">
+        <h5 class="card-title">Lose Weight</h5>
+        <p class="card-text">
+          Perhaps most importantly, lose weight! It is not a complicated
+          process, and we aim to show how you can start losing weight today in a
+          reliable and effective way!
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
