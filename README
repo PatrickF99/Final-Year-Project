@@ -1,3 +1,5 @@
 This project was developed for the final year of my computing science degree. It is a health and fitness application aimed at helping users to lose weight. 
 The project application was developed using a Python Flask backend, with a bootstrap frontend. Users can log food items they eat using text or image input, and food calorie data is extracted from a 3rd party calorie API - CalorieNinjas' API.
 Food images are sent from the application to a 3rd party image classification model hosted on HuggingFace which will classify the food item and send this prediction to the calorie API, allowing for food logging via image input.
+
+The overall mark recieved for this project was a 1st Class. 
